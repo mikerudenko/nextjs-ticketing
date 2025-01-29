@@ -4,14 +4,31 @@ import { useState } from "react";
 import styled from "styled-components";
 import SVGIcons from "@/components/SVGIcons";
 import { INITIAL_SEAT_MAP } from "@/components/constants";
-
+import IconSelected from "@/components/IconSelected";
+import IconReserved from "@/components/IconReserved";
+import IconAvailable from "@/components/IconAvailable";
 // Component to inject the icon created through a symbol element
 // Render the svg icon using the href passed as props
-const Icon = ({ href, size = 100 }: { href: string; size: number }) => (
-  <svg className={href} width={size} height={size}>
-    <use href={`#${href}`} />
-  </svg>
-);
+const Icon = ({
+  href,
+  size = 100,
+  text,
+}: {
+  href: string;
+  size: number;
+  text?: string;
+}) => {
+  return (
+    <svg className={href} width={size} height={size}>
+      <use href={`#${href}`} />
+      {text && (
+        <text x="50" y="65" fontSize="2.7rem" textAnchor="middle" fill="#fff">
+          {text}
+        </text>
+      )}
+    </svg>
+  );
+};
 
 // Header component, displaying a heading and two buttons
 const HeaderContainer = styled.div`
@@ -268,22 +285,29 @@ const Header = () => {
 };
 
 /**
- * Load icon files from svg. There’s no need to change this component.
+ * Load icon files from svg. There's no need to change this component.
  */
 const Legend = () => {
-  const items = ["available", "reserved", "selected"];
   return (
-    <LegendContainer>
+    <>
       <div style={{ display: "none" }}>
         <SVGIcons />
       </div>
-      {items.map((item) => (
-        <LegendItem key={item}>
-          <Icon href={item} size="16" />
-          <LegendItemName>{item}</LegendItemName>
+      <LegendContainer>
+        <LegendItem>
+          <IconAvailable size={16} number={5} />
+          <LegendItemName>Available</LegendItemName>
         </LegendItem>
-      ))}
-    </LegendContainer>
+        <LegendItem>
+          <IconReserved size={16} />
+          <LegendItemName>Reserved</LegendItemName>
+        </LegendItem>
+        <LegendItem>
+          <IconSelected size={16} number={5} />
+          <LegendItemName>Selected</LegendItemName>
+        </LegendItem>
+      </LegendContainer>
+    </>
   );
 };
 
