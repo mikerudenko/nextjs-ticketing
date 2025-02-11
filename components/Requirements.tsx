@@ -42,10 +42,29 @@ function Requirements() {
           </ul>
         </li>
         <li>
-          <strong>Point out any issues you see in the code</strong>
+          <strong>Add comments to your PR</strong>
+          <ul className="list-disc list-inside">
+            <li>
+              Regarding your design decisions, why did you choose to implement
+              the above features this way. Also, please identify and point out
+              any issues or inefficiencies in the existing code.
+            </li>
+          </ul>
         </li>
         <li>
-          <strong>More requirements from interviewer</strong>
+          <strong>
+            Theme Toggle and Preference Persistence Across Sessions and Devices
+          </strong>
+          <ul className="list-disc list-inside">
+            <li>
+              Add a theme toggle button to switch between light and dark modes.
+            </li>
+            <li>Ensure the theme persists across sessions (same browser).</li>
+            <li>
+              <strong>Add a comment to your PR:</strong> how would you implement
+              a solution to persist the theme across devices?
+            </li>
+          </ul>
         </li>
       </ol>
     </div>
